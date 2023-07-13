@@ -1,0 +1,292 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --primary: #fff;
+    --bg-color: #fff;
+    --bg-envelope-color: #f5edd1;
+    --envelope-tab: #ecdeb8;
+    --envelope-cover: #e6cfa7;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --txt-color: #444;
+    --heart-color: rgb(252, 8, 231);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    height: 100vh;
+    width: 100%;
+    max-width: 800px;
+    display: grid;
+    place-items: center;
+}
+
+.container>.envelope-wrapper {
+    background: var(--bg-envelope-color);
+    box-shadow: 0 0 40px var(--shadow-color);
+}
+
+.envelope-wrapper>.envelope {
+    position: relative;
+    width: 300px;
+    height: 230px;
+}
+
+.envelope-wrapper>.envelope>.top {
+    content: "";
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    border-top: 130px solid var(--envelope-tab);
+    border-right: 150px solid transparent;
+    border-left: 150px solid transparent;
+    transform-origin: top;
+    transition: all 0.5s ease-in-out 0.7s;
+}
+
+.envelope-wrapper>.envelope::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    width: 0px;
+    height: 0px;
+    border-top: 130px solid transparent;
+    border-right: 150px solid var(--envelope-cover);
+    border-bottom: 100px solid var(--envelope-cover);
+    border-left: 150px solid var(--envelope-cover);
+}
+
+.letter {
+    height: calc((95 / 100) * 230px);
+    width: calc((95 / 100) * 300px);
+    background: #ebd2ae;
+    transition: all 1s ease-in-out;
+    box-shadow: 0 0 5px #ebd2ae;
+    padding: 20px 10px;
+    overflow: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    box-sizing: border-box;
+}
+
+.letter::-webkit-scrollbar {
+    /*Chrome, Safari, Edge*/
+    display: none;
+}
+
+.letter.resize {
+    animation-name: resize;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.envelope>.letter {
+    position: absolute;
+    height: 95%;
+    width: 95%;
+    right: 2.5%;
+    bottom: 0;
+}
+
+.letter>.text {
+    color: var(--txt-color);
+    text-align: left;
+}
+
+.heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 15px;
+    height: 15px;
+    background: var(--heart-color);
+    z-index: 4;
+    transform: translate(-50%, -20%) rotate(45deg);
+    transition: transform 0.5s ease-in-out 1s;
+    box-shadow: 0 1px 6px var(--shadow-color);
+    cursor: pointer;
+}
+
+.heart:before,
+.heart:after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: var(--heart-color);
+    border-radius: 50%;
+}
+
+.heart:before {
+    top: -7.5px;
+}
+
+.heart:after {
+    right: 7.5px;
+}
+
+.flap>.envelope>.top {
+    /* transform: rotateX(270deg); */
+    /* transition-duration: 2s; */
+    /* z-index: 0; */
+    animation-name: open;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.flap>.envelope>.letter.show {
+    /* bottom: 200px; */
+    animation-name: show;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    /* transform: scale(2); */
+    /* transition-delay: 1s; */
+}
+
+.flap>.envelope>.letter.move {
+    animation-name: move;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.flap>.envelope>.letter.resize {
+    animation-name: resize;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.flap>.envelope.disappear {
+    animation-name: disappear;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.flap>.heart {
+    transform: rotate(90deg);
+    transition-delay: 0.4s;
+}
+
+@keyframes show {
+    0% {
+        top: 0px;
+    }
+
+    100% {
+        top: -100%;
+    }
+}
+
+@keyframes move {
+    0% {
+        top: -100%;
+        z-index: 100;
+    }
+
+    100% {
+        top: 0;
+        z-index: 100;
+    }
+}
+
+@keyframes open {
+    0% {
+        transform: rotateX(0deg);
+        z-index: 1;
+    }
+
+    100% {
+        transform: rotateX(270deg);
+        transition-duration: 2s;
+        z-index: 0;
+    }
+}
+
+@keyframes resize {
+    100% {
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: revert;
+    }
+}
+
+@keyframes disappear {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes more {
+    0% {}
+
+    100% {
+        width: 100%;
+        display: block;
+        position: revert;
+        height: 100%;
+    }
+}
+
+.text {
+    font-family: 'Merienda', cursive;
+}
+
+p {
+    font-size: 1.75em;
+    line-height: 2em;
+    letter-spacing: -0.03125em;
+    font-weight: 600;
+    font-style: italic;
+    color: #444;
+}
+
+p span {
+    animation-duration: 300ms;
+    animation-name: showText;
+}
+
+@keyframes showText {
+    0% {
+        opacity: 0;
+    }
+
+
+    100% {
+        opacity: 1;
+    }
+
+}
+
+@media screen and (max-width: 1024px) {
+    .text {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .text {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .text {
+        font-size: 10px;
+    }
+}
