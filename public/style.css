@@ -18,7 +18,8 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background: var(--bg-color);
+    /* background: var(--bg-envelope-color) url("daisy_9421948.png") repeat;
+    background-size: 90px; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,10 +71,10 @@ body {
 .letter {
     height: calc((95 / 100) * 230px);
     width: calc((95 / 100) * 300px);
-    background: #ebd2ae;
+    background: rgba(241, 230, 207, 0.9125);
     transition: all 1s ease-in-out;
-    box-shadow: 0 0 5px #ebd2ae;
-    padding: 20px 10px;
+    box-shadow: 0 0 5px #f1e6cf;
+    padding: 32px 40px;
     overflow: hidden;
     overflow-y: auto;
     scrollbar-width: none;
@@ -248,8 +249,8 @@ body {
 }
 
 p {
-    font-size: 1.75em;
-    line-height: 2em;
+    font-size: 1.425em;
+    line-height: 1.8125em;
     letter-spacing: -0.03125em;
     font-weight: 600;
     font-style: italic;
@@ -289,4 +290,85 @@ p span {
     .text {
         font-size: 10px;
     }
+}
+
+.background {
+    z-index: -1;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left:-12%;
+    min-width: 1920px;
+    min-height: 1080px;
+    pointer-events: none;
+}
+
+@-webkit-keyframes rotating
+
+/* Safari and Chrome */
+    {
+    from {
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotating {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.flower {
+    position: absolute;
+}
+
+.flower.small {
+    background: url("daisy_9421948.png") no-repeat;
+    background-size: contain;
+    width: 45px;
+    height: 45px;
+}
+
+.flower.big {
+    background: url("daisy_9421948.png") no-repeat;
+    background-size: contain;
+    width: 60px;
+    height: 60px;
+}
+
+.flower.fast {
+    -webkit-animation: rotating 4s linear infinite;
+    -moz-animation: rotating 4s linear infinite;
+    -ms-animation: rotating 4s linear infinite;
+    -o-animation: rotating 4s linear infinite;
+    animation: rotating 4s linear infinite;
+}
+
+.flower.slow {
+    -webkit-animation: rotating 7s linear infinite;
+    -moz-animation: rotating 7s linear infinite;
+    -ms-animation: rotating 7s linear infinite;
+    -o-animation: rotating 7s linear infinite;
+    animation: rotating 7s linear infinite;
 }
