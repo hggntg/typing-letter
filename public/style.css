@@ -341,34 +341,29 @@ p span {
 
 .flower {
     position: absolute;
+    background: url("daisy_9421948.png") no-repeat;
+    background-size: contain;
+    -webkit-animation: rotating var(--time) linear infinite;
+    -moz-animation: rotating var(--time) linear infinite;
+    -ms-animation: rotating var(--time) linear infinite;
+    -o-animation: rotating var(--time) linear infinite;
+    animation: rotating var(--time) linear infinite;
 }
 
 .flower.small {
-    background: url("daisy_9421948.png") no-repeat;
-    background-size: contain;
     width: 45px;
     height: 45px;
 }
 
 .flower.big {
-    background: url("daisy_9421948.png") no-repeat;
-    background-size: contain;
     width: 60px;
     height: 60px;
 }
 
 .flower.fast {
-    -webkit-animation: rotating 4s linear infinite;
-    -moz-animation: rotating 4s linear infinite;
-    -ms-animation: rotating 4s linear infinite;
-    -o-animation: rotating 4s linear infinite;
-    animation: rotating 4s linear infinite;
+    --time: 4s;
 }
 
 .flower.slow {
-    -webkit-animation: rotating 7s linear infinite;
-    -moz-animation: rotating 7s linear infinite;
-    -ms-animation: rotating 7s linear infinite;
-    -o-animation: rotating 7s linear infinite;
-    animation: rotating 7s linear infinite;
+    --time: 7s;
 }
